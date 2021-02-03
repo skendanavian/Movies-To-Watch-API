@@ -6,4 +6,5 @@ CREATE TABLE user_movies (
   movie_id INTEGER REFERENCES movies(id) ON DELETE CASCADE,
   watch_list BOOLEAN NOT NULL DEFAULT TRUE,
   watched BOOLEAN NOT NULL DEFAULT FALSE,
+  date_added DATE
 );
