@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS users CASCADE;
+
+CREATE TABLE users (
+  id PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  year INTEGER NOT NULL,
+  rating INTEGER,
+  runtime INTEGER,
+  genre VARCHAR(255)
+
+);
