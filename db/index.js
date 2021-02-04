@@ -62,7 +62,7 @@ const addMovieToWatchList = function (db, movieId, userId) {
   return db.query(
     `INSERT INTO user_movies (user_id, movie_id, date_added ) VALUES
   ($1,$2, NOW());`,
-    [movieId, userId]
+    [userId, movieId]
   );
 };
 
