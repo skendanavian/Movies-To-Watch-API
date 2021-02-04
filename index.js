@@ -39,7 +39,7 @@ const movieRoutes = require("./routes/movies");
 app.use("/api/login", loginRoutes(db));
 app.use("/api/register", registerRoutes(db));
 app.use("/api/logout", logoutRoutes(db));
-// app.use("/movies", movieRoutes(db));
+app.use("/api/movies", movieRoutes(db));
 
 app.get("/", (req, res) => {
   res.send("Hello It works");
