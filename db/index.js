@@ -42,18 +42,49 @@ WHERE user_id = $1;`,
   );
 };
 
-const addUserMovie = function (db, userMovieId) {
-  // check if movie info exists in db --> if so link to user_movie
+const checkIfMovieExists = function (db, movieId) {
+  return db.query(`SELECT movies.* FROM movies WHERE movies.id = $1;`, [
+    movieId,
+  ]);
+};
+
+const addMovieToDb = function (db, movieObj) {
+  const { movieId, title, year, rating, runtime, genre } = movieObj;
+  return db.query(
+    `INSERT INTO movies (id, title, year, rating, runtime, genre) VALUES
+($1,$2, $3, $4, $5, $6);`,
+    [movieId, title, year, rating, runtime, genre]
+  );
+};
+
+const addMovieToWatchList = function (db, movieId, userId) {
   // if not already in db --> insert into movie and user_movie
-  return db.query();
+  return db.query(
+    `INSERT INTO user_movies (user_id, movie_id, date_added ) VALUES
+  ($1,$2, NOW());`,
+    [movieId, userId]
+  );
 };
 
 const removeUserMovie = function (db, userMovieId) {
-  return db.query();
+  return db.query(
+    `DELETE FROM user_movies
+    WHERE user_movies.id = $1;`,
+    [userMovieId]
+  );
 };
 
-const updateWatchStatus = function (db, userMovieId) {
-  return db.query();
+const updateWatchStatus = function (db, userMovieObj) {
+  const { userMovieId, watchList, watched } = userMovieObj;
+  return db.query(
+    `
+  UPDATE user_movies
+  SET watch_list = $1,
+  watched = $2
+  WHERE user_movies.id = $3;
+  `,
+    [watchList, watched, userMovieId]
+  );
 };
 
 module.exports = {
@@ -62,4 +93,7 @@ module.exports = {
   getMoviesByUser,
   removeUserMovie,
   updateWatchStatus,
+  addMovieToDb,
+  checkIfMovieExists,
+  addMovieToWatchList,
 };

@@ -1,7 +1,13 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
-const { getMoviesByUser } = require("../db");
+const {
+  getMoviesByUser,
+  removeUserMovie,
+  updateWatchStatus,
+  addUserMovie,
+  checkIfMovieExists,
+} = require("../db");
 
 module.exports = (db) => {
   // get users movie list
