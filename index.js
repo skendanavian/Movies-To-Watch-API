@@ -36,9 +36,9 @@ const logoutRoutes = require("./routes/logout");
 const movieRoutes = require("./routes/movies");
 
 // Mount API Routes
-app.use("/login", loginRoutes(db));
-app.use("/register", registerRoutes(db));
-app.use("/logout", logoutRoutes(db));
+app.use("/api/login", loginRoutes(db));
+app.use("/api/register", registerRoutes(db));
+app.use("/api/logout", logoutRoutes(db));
 // app.use("/movies", movieRoutes(db));
 
 app.get("/", (req, res) => {

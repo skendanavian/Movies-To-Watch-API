@@ -5,7 +5,7 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     req.session = null;
     const userId = req.session;
-    res.redirect("/");
+    res.send("logged you out");
   });
 
   router.post("/", (req, res) => {});

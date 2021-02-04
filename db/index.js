@@ -24,7 +24,7 @@ const register = function (db, data) {
     email,
     password
   ) VALUES (
-    $1, $2, $3, $4, $5
+    $1, $2, $3
   ) RETURNING users.id AS user_id;
   `,
     [username, email, hashedPassword]

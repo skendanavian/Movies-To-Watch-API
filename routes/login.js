@@ -20,7 +20,7 @@ module.exports = (db) => {
    */
   const login = function (email, password) {
     return getUserWithEmail(db, email).then((user) => {
-      console.log(user);
+      console.log("here", user);
       if (!user) {
         return null;
       } else if (bcrypt.compareSync(password, user.password)) {
@@ -35,7 +35,7 @@ module.exports = (db) => {
     console.log(req.body);
     const { email, password } = req.body;
 
-    // const { userId } = req.session;
+    const { userId } = req.session;
     const errorMsgs = [];
 
     console.log({ email });
@@ -49,11 +49,11 @@ module.exports = (db) => {
       .then((user) => {
         if (!user) {
           errorMsgs.push("User not found!");
-          response.send("here is the login page");
+          response.send(errorMsgs);
           return;
         }
 
-        // req.session.userId = user.id;
+        req.session.userId = user.id;
         const { userId } = req.session;
         if (userId) {
           response.send("It Works");
