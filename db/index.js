@@ -42,8 +42,24 @@ WHERE user_id = $1;`,
   );
 };
 
+const addUserMovie = function (db, userMovieId) {
+  // check if movie info exists in db --> if so link to user_movie
+  // if not already in db --> insert into movie and user_movie
+  return db.query();
+};
+
+const removeUserMovie = function (db, userMovieId) {
+  return db.query();
+};
+
+const updateWatchStatus = function (db, userMovieId) {
+  return db.query();
+};
+
 module.exports = {
   getUserWithEmail,
   register,
   getMoviesByUser,
+  removeUserMovie,
+  updateWatchStatus,
 };
