@@ -29,6 +29,18 @@ app.use(
   })
 );
 
+// Separate API Routes
+const loginRoutes = require("./routes/login");
+const registerRoutes = require("./routes/register");
+const logoutRoutes = require("./routes/logout");
+const movieRoutes = require("./routes/movies");
+
+// Mount API Routes
+app.use("/login", loginRoutes(db));
+app.use("/register", registerRoutes(db));
+app.use("/logout", logoutRoutes(db));
+// app.use("/movies", movieRoutes(db));
+
 app.get("/", (req, res) => {
   res.send("Hello It works");
 });
