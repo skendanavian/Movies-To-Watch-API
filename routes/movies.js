@@ -15,7 +15,7 @@ module.exports = (db) => {
     const { userId } = req.session;
 
     if (!userId) {
-      res.send("gotta log in or make an account yo");
+      response.send("gotta log in or make an account yo");
     } else {
       getMoviesByUser(db, userId).then((res) => {
         console.log(res.rows);

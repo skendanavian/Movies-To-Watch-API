@@ -18,6 +18,9 @@ module.exports = (db) => {
    * @param {String} email
    * @param {String} password encrypted
    */
+
+  // TODO - implement JWT + session cookie for user auth and security
+
   const login = function (email, password) {
     return getUserWithEmail(db, email).then((user) => {
       console.log("here", user);

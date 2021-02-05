@@ -42,13 +42,15 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, response) => {
+    console.log("body", req.body);
     const { username, email, password } = req.body;
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     const errorMsgs = validateRegisterData(req.body);
     if (errorMsgs.length) {
-      response.statusCode = 400;
+      // this was throwing an error for trying to send two response headers
+      // response.statusCode = 400;
       response.send("something went wrong, try registering again");
     }
 
