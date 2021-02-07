@@ -14,6 +14,8 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
+const jwt = require("jsonwebtoken");
+
 const app = express();
 app.use(morgan("dev"));
 app.use(cors());
@@ -31,6 +33,7 @@ app.use(
   cookieSession({
     name: "session",
     keys: ["key1"],
+    httpOnly: true,
   })
 );
 

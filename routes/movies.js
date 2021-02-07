@@ -12,6 +12,7 @@ const {
 module.exports = (db) => {
   // get users movie list
   router.get("/", (req, response) => {
+    console.log(req.session);
     const { userId } = req.session;
 
     if (!userId) {
